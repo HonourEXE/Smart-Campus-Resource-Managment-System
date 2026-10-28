@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Smart Campus and Resource Management System (SCRMS)
 ### Real-Time Facility Availability, Intelligent Conflict Prevention & Equipment Maintenance Tracking
 
@@ -157,3 +158,6 @@ Run the built-in REST API validation test suite:
 npm run test:server
 ```
 Tests pass **100%** covering health checks, auth, conflict detection, RBAC 403 Forbidden validation, manager approvals, recommendations, and analytics.
+=======
+# Smart-Campus-Resource-Managment-System
+>>>>>>> b81ffb21a8ba6ed7c068c4c57ec1319f98d10d79

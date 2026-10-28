@@ -175,7 +175,7 @@ const Resources = () => {
             setShowSmartWizard(!showSmartWizard);
             if (!showSmartWizard) handleFetchRecommendations();
           }}
-          className={`btn ${showSmartWizard ? 'btn-outline-info' : 'btn-primary-gradient'} d-flex align-items-center gap-2`}
+          className={`btn ${showSmartWizard ? 'btn-outline-primary' : 'btn-primary-gradient'} d-flex align-items-center gap-2`}
         >
           <i className="bi bi-magic fs-6"></i>
           <span>{showSmartWizard ? 'Close Recommendation Wizard' : 'Smart AI/Rule Recommendation'}</span>
@@ -184,12 +184,12 @@ const Resources = () => {
 
       {/* Innovation Feature: Smart Recommendation Wizard Panel */}
       {showSmartWizard && (
-        <div className="card-glass p-4 mb-4 border-info">
-          <div className="d-flex align-items-center gap-2 mb-3 text-info">
+        <div className="card-glass p-4 mb-4 border" style={{ borderColor: '#7dd3fc', background: 'linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)' }}>
+          <div className="d-flex align-items-center gap-2 mb-3 text-primary">
             <i className="bi bi-cpu-fill fs-4"></i>
             <h5 className="mb-0 fw-bold">Intelligent Facility Recommendation Engine</h5>
           </div>
-          <p className="text-light small mb-3">
+          <p className="text-muted small mb-3">
             Specify your event's seating capacity, required equipment, and preferences. The system ranks facilities by suitability score to optimize campus room utilization!
           </p>
 
@@ -231,7 +231,7 @@ const Resources = () => {
               <button
                 type="button"
                 onClick={handleFetchRecommendations}
-                className="btn btn-info w-100 fw-semibold"
+                className="btn btn-primary-gradient w-100 fw-semibold"
                 disabled={loadingRecs}
               >
                 {loadingRecs ? 'Scoring...' : 'Find Matches'}
@@ -243,16 +243,16 @@ const Resources = () => {
           <div className="row g-3">
             {recommendations.map((rec) => (
               <div key={rec.resource._id} className="col-md-6 col-xl-4">
-                <div className="p-3 rounded h-100 d-flex flex-column justify-content-between" style={{ background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.25)' }}>
+                <div className="p-3 rounded h-100 d-flex flex-column justify-content-between" style={{ background: '#f0f9ff', border: '1px solid #bae6fd' }}>
                   <div>
                     <div className="d-flex justify-content-between align-items-start mb-2">
                       <span className="match-score-badge">
                         <i className="bi bi-stars"></i> {rec.matchScore}% Match
                       </span>
-                      <span className="badge bg-dark text-info">{rec.resource.type}</span>
+                      <span className="badge bg-light text-primary border" style={{ borderColor: '#bae6fd' }}>{rec.resource.type}</span>
                     </div>
 
-                    <h6 className="fw-bold text-white mb-1">{rec.resource.name}</h6>
+                    <h6 className="fw-bold text-dark mb-1">{rec.resource.name}</h6>
                     <div className="text-muted small mb-2">
                       <i className="bi bi-geo-alt me-1"></i>
                       {rec.resource.location?.building} &bull; Room {rec.resource.location?.roomNumber} (Cap: {rec.resource.capacity})
@@ -260,7 +260,7 @@ const Resources = () => {
 
                     <div className="small mb-2">
                       {rec.reasons.map((r, i) => (
-                        <div key={i} className="text-light" style={{ fontSize: '0.78rem' }}>
+                        <div key={i} className="text-secondary" style={{ fontSize: '0.78rem' }}>
                           <i className="bi bi-check2 text-success me-1"></i> {r}
                         </div>
                       ))}
@@ -269,7 +269,7 @@ const Resources = () => {
 
                   <button
                     onClick={() => openBookingModal(rec.resource)}
-                    className="btn btn-sm btn-outline-info w-100 mt-2"
+                    className="btn btn-sm btn-outline-primary w-100 mt-2"
                   >
                     Select & Book This Room
                   </button>
@@ -285,7 +285,7 @@ const Resources = () => {
         <form onSubmit={handleSearchSubmit} className="row g-3 align-items-center">
           <div className="col-12 col-md-5">
             <div className="input-group">
-              <span className="input-group-text bg-dark border-secondary text-secondary">
+              <span className="input-group-text bg-light text-primary" style={{ borderColor: '#cbd5e1' }}>
                 <i className="bi bi-search"></i>
               </span>
               <input
@@ -323,7 +323,7 @@ const Resources = () => {
           </div>
 
           <div className="col-12 col-md-2">
-            <button type="submit" className="btn btn-secondary-dark w-100">
+            <button type="submit" className="btn btn-secondary-light w-100">
               Apply Filters
             </button>
           </div>
@@ -357,7 +357,7 @@ const Resources = () => {
                     </span>
                   </div>
 
-                  <h5 className="fw-bold text-white mb-1">{res.name}</h5>
+                  <h5 className="fw-bold text-dark mb-1">{res.name}</h5>
                   <div className="text-muted small mb-2">
                     <i className="bi bi-geo-alt-fill text-danger me-1"></i>
                     {res.location?.building}, Floor {res.location?.floor}, Room {res.location?.roomNumber}
@@ -367,9 +367,9 @@ const Resources = () => {
                     {res.description || 'Modern facility equipped for academic coursework, labs, and student meetings.'}
                   </p>
 
-                  <div className="d-flex align-items-center gap-3 mb-3 text-light small">
+                  <div className="d-flex align-items-center gap-3 mb-3 text-dark small">
                     <div>
-                      <i className="bi bi-people-fill text-info me-1"></i>
+                      <i className="bi bi-people-fill text-primary me-1"></i>
                       <strong>{res.capacity}</strong> Seats
                     </div>
                     <div>
@@ -388,7 +388,7 @@ const Resources = () => {
                   </div>
                 </div>
 
-                <div className="pt-3 border-top border-secondary d-flex gap-2">
+                <div className="pt-3 border-top d-flex gap-2" style={{ borderColor: 'var(--surface-border-sky)' }}>
                   <button
                     onClick={() => openBookingModal(res)}
                     className="btn btn-primary-gradient flex-grow-1"
@@ -416,17 +416,17 @@ const Resources = () => {
         <div
           className="modal fade show d-block"
           tabIndex="-1"
-          style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)' }}
+          style={{ backgroundColor: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(6px)' }}
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content card-glass">
-              <div className="modal-header border-bottom border-secondary">
-                <h5 className="modal-title fw-bold text-white">
+              <div className="modal-header border-bottom" style={{ borderColor: '#e0f2fe' }}>
+                <h5 className="modal-title fw-bold text-dark">
                   Reserve {selectedResource.name}
                 </h5>
                 <button
                   type="button"
-                  className="btn-close btn-close-white"
+                  className="btn-close"
                   onClick={() => setSelectedResource(null)}
                 ></button>
               </div>
@@ -511,10 +511,10 @@ const Resources = () => {
                   </div>
                 </div>
 
-                <div className="modal-footer border-top border-secondary">
+                <div className="modal-footer border-top" style={{ borderColor: '#e0f2fe' }}>
                   <button
                     type="button"
-                    className="btn btn-secondary-dark"
+                    className="btn btn-secondary-light"
                     onClick={() => setSelectedResource(null)}
                   >
                     Cancel

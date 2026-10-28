@@ -149,7 +149,7 @@ const CalendarView = () => {
               </div>
             </div>
 
-            <div className="d-flex gap-3 text-light small">
+            <div className="d-flex gap-3 text-dark small">
               <div className="d-flex align-items-center gap-2">
                 <span className="badge rounded-circle p-1 bg-success">&nbsp;</span> Confirmed Booking
               </div>
@@ -183,18 +183,18 @@ const CalendarView = () => {
                   style={{
                     background: booking
                       ? booking.status === 'Approved'
-                        ? 'rgba(16, 185, 129, 0.1)'
-                        : 'rgba(245, 158, 11, 0.1)'
-                      : 'rgba(255, 255, 255, 0.02)',
+                        ? '#f0fdf4'
+                        : '#fffbeb'
+                      : '#ffffff',
                     border: booking
                       ? booking.status === 'Approved'
-                        ? '1px solid rgba(16, 185, 129, 0.3)'
-                        : '1px solid rgba(245, 158, 11, 0.3)'
-                      : '1px solid var(--surface-border)',
+                        ? '1px solid #86efac'
+                        : '1px solid #fde68a'
+                      : '1px solid #e2e8f0',
                   }}
                 >
                   <div className="col-12 col-md-2">
-                    <span className="fw-bold text-light font-monospace">{hour} - {parseInt(hour.split(':')[0], 10) + 1}:00</span>
+                    <span className="fw-bold text-dark font-monospace">{hour} - {parseInt(hour.split(':')[0], 10) + 1}:00</span>
                   </div>
 
                   <div className="col-12 col-md-8">
@@ -204,15 +204,15 @@ const CalendarView = () => {
                           <span className={`badge ${booking.status === 'Approved' ? 'bg-success' : 'bg-warning text-dark'}`}>
                             {booking.status}
                           </span>
-                          <strong className="text-white">{booking.purpose}</strong>
+                          <strong className="text-dark">{booking.purpose}</strong>
                         </div>
                         <div className="text-muted small mt-1">
                           Reserved by {booking.userId?.name || 'Authorized Member'} &bull; Attendees: {booking.attendeesCount}
                         </div>
                       </div>
                     ) : (
-                      <div className="text-secondary small d-flex align-items-center gap-2">
-                        <i className="bi bi-dash-circle text-muted"></i>
+                      <div className="text-muted small d-flex align-items-center gap-2">
+                        <i className="bi bi-dash-circle text-primary"></i>
                         <span>Facility is unreserved during this hour. Available for booking.</span>
                       </div>
                     )}
@@ -222,7 +222,7 @@ const CalendarView = () => {
                     {!booking && currentResource?.status === 'Available' && (
                       <Link
                         to="/resources"
-                        className="btn btn-sm btn-outline-info"
+                        className="btn btn-sm btn-outline-primary"
                       >
                         Reserve
                       </Link>

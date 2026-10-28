@@ -16,13 +16,13 @@ const DemoSwitcher = () => {
   };
 
   return (
-    <div className="demo-bar text-white d-flex flex-wrap align-items-center justify-content-between gap-2">
+    <div className="demo-bar d-flex flex-wrap align-items-center justify-content-between gap-2">
       <div className="d-flex align-items-center gap-2">
-        <span className="badge bg-indigo-600 text-uppercase" style={{ background: '#4f46e5', fontSize: '0.75rem' }}>
-          <i className="bi bi-mortarboard-fill me-1"></i> IA III Evaluation Demo Bar
+        <span className="badge text-uppercase text-white shadow-sm" style={{ background: 'linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%)', fontSize: '0.75rem' }}>
+          <i className="bi bi-mortarboard-fill me-1"></i> Evaluation Demo Bar
         </span>
-        <span className="d-none d-md-inline text-muted" style={{ fontSize: '0.8rem' }}>
-          Switch test role with 1-click:
+        <span className="d-none d-md-inline fw-semibold" style={{ fontSize: '0.82rem', color: '#0369a1' }}>
+          Quick-switch test persona with 1-click:
         </span>
       </div>
 
@@ -30,7 +30,7 @@ const DemoSwitcher = () => {
         <button
           onClick={() => handleRoleSelect('student')}
           className={`demo-chip ${user?.role === 'student' ? 'active' : ''}`}
-          title="Switch to Student account (Aarav Sharma)"
+          title="Switch to Student account (Honour David)"
         >
           <i className="bi bi-person-fill"></i>
           Student

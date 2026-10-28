@@ -60,11 +60,11 @@ const Dashboard = () => {
   return (
     <div className="container-fluid px-lg-4 py-4">
       {/* Welcome Banner */}
-      <div className="card-glass p-4 mb-4 border-0" style={{ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%)' }}>
+      <div className="card-glass p-4 mb-4 border" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f0f9ff 60%, #e0f2fe 100%)', borderColor: 'var(--surface-border-sky)' }}>
         <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
           <div>
             <div className="d-flex align-items-center gap-2 mb-1">
-              <h2 className="mb-0 fw-bold">Welcome back, {user?.name}!</h2>
+              <h2 className="mb-0 fw-bold text-dark">Welcome back, {user?.name}!</h2>
               <span className="badge bg-primary text-uppercase px-2">{user?.role}</span>
             </div>
             <p className="text-muted mb-0 small">
@@ -78,13 +78,13 @@ const Dashboard = () => {
               <span>Book Facility</span>
             </Link>
 
-            <Link to="/maintenance" className="btn btn-secondary-dark d-flex align-items-center gap-2">
+            <Link to="/maintenance" className="btn btn-secondary-light d-flex align-items-center gap-2">
               <i className="bi bi-exclamation-octagon text-warning"></i>
               <span>Report Fault</span>
             </Link>
 
             {isStaffOrAdmin && (
-              <Link to="/manage-resources" className="btn btn-outline-info d-flex align-items-center gap-2">
+              <Link to="/manage-resources" className="btn btn-outline-primary d-flex align-items-center gap-2">
                 <i className="bi bi-plus-circle"></i>
                 <span>Add Facility</span>
               </Link>
@@ -102,7 +102,7 @@ const Dashboard = () => {
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
                     <div className="text-muted small text-uppercase fw-semibold">Campus Resources</div>
-                    <div className="stat-val text-white mt-1">{stats?.summary?.totalResources || 0}</div>
+                    <div className="stat-val text-dark mt-1">{stats?.summary?.totalResources || 0}</div>
                     <div className="text-success small mt-1">
                       <i className="bi bi-check-circle me-1"></i>
                       {stats?.summary?.availableResources || 0} Available
@@ -120,7 +120,7 @@ const Dashboard = () => {
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
                     <div className="text-muted small text-uppercase fw-semibold">Active Bookings</div>
-                    <div className="stat-val text-white mt-1">{stats?.summary?.approvedBookings || 0}</div>
+                    <div className="stat-val text-dark mt-1">{stats?.summary?.approvedBookings || 0}</div>
                     <div className="text-muted small mt-1">
                       Total: {stats?.summary?.totalBookings || 0} recorded
                     </div>
@@ -179,7 +179,7 @@ const Dashboard = () => {
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
                     <div className="text-muted small text-uppercase fw-semibold">My Total Bookings</div>
-                    <div className="stat-val text-white mt-1">{myBookings.length}</div>
+                    <div className="stat-val text-dark mt-1">{myBookings.length}</div>
                     <div className="text-muted small mt-1">Historical & Active</div>
                   </div>
                   <div className="stat-icon bg-primary bg-opacity-10 text-primary">
@@ -228,14 +228,14 @@ const Dashboard = () => {
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
                     <div className="text-muted small text-uppercase fw-semibold">My Reported Issues</div>
-                    <div className="stat-val text-white mt-1">{myTickets.length}</div>
+                    <div className="stat-val text-dark mt-1">{myTickets.length}</div>
                     <div className="text-info small mt-1">
                       <Link to="/maintenance" className="text-info text-decoration-none">
                         Track Status <i className="bi bi-arrow-right"></i>
                       </Link>
                     </div>
                   </div>
-                  <div className="stat-icon bg-purple bg-opacity-10 text-white" style={{ background: 'rgba(139, 92, 246, 0.15)' }}>
+                  <div className="stat-icon bg-info bg-opacity-10 text-primary">
                     <i className="bi bi-tools"></i>
                   </div>
                 </div>
@@ -284,13 +284,13 @@ const Dashboard = () => {
                     {myBookings.map((b) => (
                       <tr key={b._id}>
                         <td>
-                          <div className="fw-bold text-white">{b.resourceId?.name || 'Campus Facility'}</div>
+                          <div className="fw-bold text-dark">{b.resourceId?.name || 'Campus Facility'}</div>
                           <div className="text-muted" style={{ fontSize: '0.75rem' }}>
                             {b.resourceId?.type} &bull; {b.resourceId?.location?.building}
                           </div>
                         </td>
                         <td>
-                          <div className="text-light small">
+                          <div className="text-dark small">
                             {new Date(b.startTime).toLocaleDateString([], { month: 'short', day: 'numeric' })}
                           </div>
                           <div className="text-muted" style={{ fontSize: '0.75rem' }}>
@@ -302,7 +302,7 @@ const Dashboard = () => {
                         </td>
                         {isStaffOrAdmin && (
                           <td>
-                            <div className="small text-light">{b.userId?.name}</div>
+                            <div className="small text-dark fw-semibold">{b.userId?.name}</div>
                             <div className="text-muted" style={{ fontSize: '0.7rem' }}>
                               {b.userId?.role}
                             </div>
@@ -332,17 +332,17 @@ const Dashboard = () => {
                   <i className="bi bi-lightning-charge-fill text-warning"></i>
                   Key Campus Venues
                 </h5>
-                <Link to="/resources" className="text-info small text-decoration-none">
+                <Link to="/resources" className="text-primary small text-decoration-none fw-semibold">
                   All
                 </Link>
               </div>
 
               <div className="d-flex flex-column gap-3">
                 {recentResources.map((res) => (
-                  <div key={res._id} className="p-3 rounded" style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--surface-border)' }}>
+                  <div key={res._id} className="p-3 rounded" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                     <div className="d-flex justify-content-between align-items-start">
                       <div>
-                        <div className="fw-semibold text-white small">{res.name}</div>
+                        <div className="fw-semibold text-dark small">{res.name}</div>
                         <div className="text-muted" style={{ fontSize: '0.72rem' }}>
                           {res.location?.building} &bull; Capacity: {res.capacity}
                         </div>
@@ -363,7 +363,7 @@ const Dashboard = () => {
                   <i className="bi bi-tools text-danger"></i>
                   Active Maintenance
                 </h5>
-                <Link to="/maintenance" className="text-info small text-decoration-none">
+                <Link to="/maintenance" className="text-primary small text-decoration-none fw-semibold">
                   Tickets
                 </Link>
               </div>
@@ -376,9 +376,9 @@ const Dashboard = () => {
               ) : (
                 <div className="d-flex flex-column gap-2">
                   {myTickets.map((t) => (
-                    <div key={t._id} className="p-2 rounded border border-secondary small bg-dark bg-opacity-50">
+                    <div key={t._id} className="p-3 rounded border small bg-light" style={{ borderColor: '#e2e8f0' }}>
                       <div className="d-flex justify-content-between">
-                        <strong className="text-light text-truncate" style={{ maxWidth: '180px' }}>
+                        <strong className="text-dark text-truncate" style={{ maxWidth: '180px' }}>
                           {t.resourceId?.name}
                         </strong>
                         <span className={`badge ${t.priority === 'Urgent' ? 'bg-danger' : t.priority === 'High' ? 'bg-warning text-dark' : 'bg-secondary'}`} style={{ fontSize: '0.65rem' }}>
@@ -389,7 +389,7 @@ const Dashboard = () => {
                         {t.description}
                       </div>
                       <div className="d-flex justify-content-between align-items-center mt-2" style={{ fontSize: '0.7rem' }}>
-                        <span className="text-info">Status: {t.status}</span>
+                        <span className="text-primary fw-medium">Status: {t.status}</span>
                         <span className="text-secondary">{t.assignedTo || 'Unassigned'}</span>
                       </div>
                     </div>

@@ -14,7 +14,7 @@ The following sequence directly follows **Section 14 of the Project Proposal** a
 ```mermaid
 sequenceDiagram
     autonumber
-    actor S as Student (Aarav)
+    actor S as Student (Honour David)
     actor M as Manager (Rajesh)
     actor A as Admin (Dr. Vikram)
     participant C as React Client
@@ -101,7 +101,7 @@ Expected output:
 ```
 --- STARTING BACKEND REST API VALIDATION SUITE ---
 [Test 1] Health Check: Status 200 (healthy)
-[Test 2] Student Login: Status 200 (User: Aarav Sharma, Role: student)
+[Test 2] Student Login: Status 200 (User: Honour David, Role: student)
 [Test 3] List Resources: Status 200 (Found 8 campus facilities)
 [Test 4] Availability Check for Turing Advanced Computing Lab (CS-301): Status 200 (Active Bookings: 1)
 [Test 5] Conflict Detection: Status 409 (Conflict Detected: true)

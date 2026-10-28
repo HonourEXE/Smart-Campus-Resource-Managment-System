@@ -20,6 +20,18 @@ const startServer = async () => {
 
     const server = http.createServer(app);
 
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`\n[Server Error] Port ${PORT} is already in use by another running process!`);
+        console.error(`To fix this:`);
+        console.error(`  1. Terminate the other process occupying port ${PORT}.`);
+        console.error(`  2. Or set a different PORT in server/.env (e.g., PORT=5001).\n`);
+      } else {
+        console.error('[Server Error]:', err.message);
+      }
+      process.exit(1);
+    });
+
     server.listen(PORT, () => {
       console.log('================================================================');
       console.log(` SMART CAMPUS & RESOURCE MANAGEMENT SYSTEM (SCRMS) API RUNNING `);

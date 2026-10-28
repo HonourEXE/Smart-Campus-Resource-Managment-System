@@ -168,7 +168,7 @@ const ResourceManagement = () => {
       {feedback.text && (
         <div className={`alert alert-${feedback.type} alert-dismissible fade show small py-2`} role="alert">
           {feedback.text}
-          <button type="button" className="btn-close btn-close-white" onClick={() => setFeedback({ type: '', text: '' })}></button>
+          <button type="button" className="btn-close" onClick={() => setFeedback({ type: '', text: '' })}></button>
         </div>
       )}
 
@@ -198,22 +198,22 @@ const ResourceManagement = () => {
                 {resources.map((res) => (
                   <tr key={res._id}>
                     <td>
-                      <div className="fw-bold text-white">{res.name}</div>
+                      <div className="fw-bold text-dark">{res.name}</div>
                       <div className="text-muted small text-truncate" style={{ maxWidth: '240px' }}>
                         {res.description}
                       </div>
                     </td>
                     <td>
-                      <span className="badge bg-secondary">{res.type}</span>
+                      <span className="badge bg-light text-primary border" style={{ borderColor: '#bae6fd' }}>{res.type}</span>
                     </td>
                     <td>
-                      <div className="small text-light">{res.location?.building}</div>
+                      <div className="small text-dark">{res.location?.building}</div>
                       <div className="text-muted" style={{ fontSize: '0.72rem' }}>
                         Floor {res.location?.floor}, Room {res.location?.roomNumber}
                       </div>
                     </td>
                     <td>
-                      <span className="fw-bold text-info">{res.capacity}</span> <span className="small text-muted">seats</span>
+                      <span className="fw-bold text-primary">{res.capacity}</span> <span className="small text-muted">seats</span>
                     </td>
                     <td style={{ maxWidth: '200px' }}>
                       <div className="d-flex flex-wrap gap-1">
@@ -241,7 +241,7 @@ const ResourceManagement = () => {
                       <div className="d-flex justify-content-end gap-2">
                         <button
                           onClick={() => openEditModal(res)}
-                          className="btn btn-sm btn-outline-info"
+                          className="btn btn-sm btn-outline-primary"
                           title="Edit Resource"
                         >
                           <i className="bi bi-pencil-square"></i>
@@ -268,17 +268,17 @@ const ResourceManagement = () => {
         <div
           className="modal fade show d-block"
           tabIndex="-1"
-          style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)' }}
+          style={{ backgroundColor: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(6px)' }}
         >
           <div className="modal-dialog modal-dialog-centered modal-lg">
             <div className="modal-content card-glass">
-              <div className="modal-header border-bottom border-secondary">
-                <h5 className="modal-title fw-bold text-white">
+              <div className="modal-header border-bottom" style={{ borderColor: '#e0f2fe' }}>
+                <h5 className="modal-title fw-bold text-dark">
                   {editingResource ? 'Edit Facility Information' : 'Register New Campus Facility'}
                 </h5>
                 <button
                   type="button"
-                  className="btn-close btn-close-white"
+                  className="btn-close"
                   onClick={() => setIsModalOpen(false)}
                 ></button>
               </div>
@@ -408,10 +408,10 @@ const ResourceManagement = () => {
                   </div>
                 </div>
 
-                <div className="modal-footer border-top border-secondary">
+                <div className="modal-footer border-top" style={{ borderColor: '#e0f2fe' }}>
                   <button
                     type="button"
-                    className="btn btn-secondary-dark"
+                    className="btn btn-secondary-light"
                     onClick={() => setIsModalOpen(false)}
                   >
                     Cancel

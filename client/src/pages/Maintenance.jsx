@@ -151,7 +151,7 @@ const Maintenance = () => {
       {feedback.text && (
         <div className={`alert alert-${feedback.type} alert-dismissible fade show small py-2`} role="alert">
           {feedback.text}
-          <button type="button" className="btn-close btn-close-white" onClick={() => setFeedback({ type: '', text: '' })}></button>
+          <button type="button" className="btn-close" onClick={() => setFeedback({ type: '', text: '' })}></button>
         </div>
       )}
 
@@ -161,7 +161,7 @@ const Maintenance = () => {
           <button
             key={st}
             onClick={() => setStatusFilter(st)}
-            className={`btn btn-sm ${statusFilter === st ? 'btn-primary-gradient' : 'btn-secondary-dark'}`}
+            className={`btn btn-sm ${statusFilter === st ? 'btn-primary-gradient' : 'btn-secondary-light'}`}
           >
             {st}
           </button>
@@ -199,13 +199,13 @@ const Maintenance = () => {
                 {tickets.map((t) => (
                   <tr key={t._id}>
                     <td>
-                      <div className="fw-bold text-white">{t.resourceId?.name}</div>
+                      <div className="fw-bold text-dark">{t.resourceId?.name}</div>
                       <div className="text-muted" style={{ fontSize: '0.75rem' }}>
                         {t.resourceId?.location?.building} &bull; Room {t.resourceId?.location?.roomNumber}
                       </div>
                     </td>
                     <td style={{ maxWidth: '280px' }}>
-                      <div className="text-light small">{t.description}</div>
+                      <div className="text-dark small">{t.description}</div>
                       {t.resolutionNotes && (
                         <div className="text-success small mt-1" style={{ fontSize: '0.72rem' }}>
                           <i className="bi bi-check2-all me-1"></i> Resolution: "{t.resolutionNotes}"
@@ -241,10 +241,10 @@ const Maintenance = () => {
                       </span>
                     </td>
                     <td>
-                      <div className="small text-light">{t.assignedTo || 'Unassigned'}</div>
+                      <div className="small text-dark">{t.assignedTo || 'Unassigned'}</div>
                     </td>
                     <td>
-                      <div className="small text-light">{t.reportedBy?.name}</div>
+                      <div className="small text-dark fw-semibold">{t.reportedBy?.name}</div>
                       <div className="text-muted" style={{ fontSize: '0.7rem' }}>
                         {t.reportedBy?.department}
                       </div>
@@ -253,7 +253,7 @@ const Maintenance = () => {
                       {isStaffOrAdmin && t.status !== 'Resolved' && (
                         <button
                           onClick={() => openUpdateModal(t)}
-                          className="btn btn-sm btn-outline-warning d-inline-flex align-items-center gap-1"
+                          className="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"
                         >
                           <i className="bi bi-gear-fill"></i>
                           <span>Manage</span>
@@ -278,15 +278,15 @@ const Maintenance = () => {
         <div
           className="modal fade show d-block"
           tabIndex="-1"
-          style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)' }}
+          style={{ backgroundColor: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(6px)' }}
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content card-glass">
-              <div className="modal-header border-bottom border-secondary">
-                <h5 className="modal-title fw-bold text-white">Report Broken / Faulty Equipment</h5>
+              <div className="modal-header border-bottom" style={{ borderColor: '#e0f2fe' }}>
+                <h5 className="modal-title fw-bold text-dark">Report Broken / Faulty Equipment</h5>
                 <button
                   type="button"
-                  className="btn-close btn-close-white"
+                  className="btn-close"
                   onClick={() => setIsReportModalOpen(false)}
                 ></button>
               </div>
@@ -343,16 +343,16 @@ const Maintenance = () => {
                       checked={reportForm.markUnavailable}
                       onChange={(e) => setReportForm({ ...reportForm, markUnavailable: e.target.checked })}
                     />
-                    <label className="form-check-label text-light small" htmlFor="markUnavailableSwitch">
+                    <label className="form-check-label text-dark small" htmlFor="markUnavailableSwitch">
                       Mark facility as 'Under Maintenance' immediately (blocks bookings)
                     </label>
                   </div>
                 </div>
 
-                <div className="modal-footer border-top border-secondary">
+                <div className="modal-footer border-top" style={{ borderColor: '#e0f2fe' }}>
                   <button
                     type="button"
-                    className="btn btn-secondary-dark"
+                    className="btn btn-secondary-light"
                     onClick={() => setIsReportModalOpen(false)}
                   >
                     Cancel
@@ -376,22 +376,22 @@ const Maintenance = () => {
         <div
           className="modal fade show d-block"
           tabIndex="-1"
-          style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)' }}
+          style={{ backgroundColor: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(6px)' }}
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content card-glass">
-              <div className="modal-header border-bottom border-secondary">
-                <h5 className="modal-title fw-bold text-white">Update Maintenance Ticket</h5>
+              <div className="modal-header border-bottom" style={{ borderColor: '#e0f2fe' }}>
+                <h5 className="modal-title fw-bold text-dark">Update Maintenance Ticket</h5>
                 <button
                   type="button"
-                  className="btn-close btn-close-white"
+                  className="btn-close"
                   onClick={() => setActiveTicket(null)}
                 ></button>
               </div>
 
               <form onSubmit={handleUpdateSubmit}>
                 <div className="modal-body p-4">
-                  <div className="p-3 rounded bg-dark border border-secondary mb-3 small">
+                  <div className="p-3 rounded bg-light border mb-3 small" style={{ borderColor: '#e2e8f0' }}>
                     <div>Facility: <strong>{activeTicket.resourceId?.name}</strong></div>
                     <div>Fault: {activeTicket.description}</div>
                     <div>Reported By: {activeTicket.reportedBy?.name}</div>
@@ -440,10 +440,10 @@ const Maintenance = () => {
                   )}
                 </div>
 
-                <div className="modal-footer border-top border-secondary">
+                <div className="modal-footer border-top" style={{ borderColor: '#e0f2fe' }}>
                   <button
                     type="button"
-                    className="btn btn-secondary-dark"
+                    className="btn btn-secondary-light"
                     onClick={() => setActiveTicket(null)}
                   >
                     Cancel

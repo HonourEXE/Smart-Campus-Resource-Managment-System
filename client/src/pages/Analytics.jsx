@@ -65,8 +65,8 @@ const Analytics = () => {
       {
         label: 'Booked Sessions',
         data: hourCounts,
-        backgroundColor: 'rgba(99, 102, 241, 0.75)',
-        borderColor: '#818cf8',
+        backgroundColor: 'rgba(14, 165, 233, 0.75)',
+        borderColor: '#0284c7',
         borderWidth: 1,
         borderRadius: 6,
       },
@@ -78,22 +78,24 @@ const Analytics = () => {
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: '#1e293b',
-        titleColor: '#f8fafc',
-        bodyColor: '#cbd5e1',
-        borderColor: 'rgba(255,255,255,0.1)',
+        backgroundColor: '#ffffff',
+        titleColor: '#0c4a6e',
+        bodyColor: '#334155',
+        borderColor: '#bae6fd',
         borderWidth: 1,
+        padding: 10,
+        boxPadding: 4,
       },
     },
     scales: {
       x: {
-        grid: { color: 'rgba(255,255,255,0.05)' },
-        ticks: { color: '#94a3b8' },
+        grid: { color: 'rgba(14, 165, 233, 0.08)' },
+        ticks: { color: '#64748b' },
       },
       y: {
         beginAtZero: true,
-        grid: { color: 'rgba(255,255,255,0.05)' },
-        ticks: { color: '#94a3b8', stepSize: 1 },
+        grid: { color: 'rgba(14, 165, 233, 0.08)' },
+        ticks: { color: '#64748b', stepSize: 1 },
       },
     },
   };
@@ -105,13 +107,13 @@ const Analytics = () => {
       {
         data: categories.map((c) => c.count),
         backgroundColor: [
-          '#3b82f6',
-          '#10b981',
-          '#8b5cf6',
-          '#f59e0b',
-          '#ec4899',
+          '#0284c7',
+          '#38bdf8',
+          '#0ea5e9',
           '#06b6d4',
-          '#64748b',
+          '#10b981',
+          '#f59e0b',
+          '#6366f1',
         ],
         borderWidth: 0,
       },
@@ -123,7 +125,7 @@ const Analytics = () => {
     plugins: {
       legend: {
         position: 'bottom',
-        labels: { color: '#cbd5e1', boxWidth: 12, padding: 12 },
+        labels: { color: '#334155', boxWidth: 12, padding: 12 },
       },
     },
     cutout: '65%',
@@ -193,7 +195,7 @@ const Analytics = () => {
                 <i className="bi bi-clock-history text-primary"></i>
                 Peak Booking Hours Distribution
               </h5>
-              <span className="badge bg-dark border border-secondary text-light">08:00 - 18:00</span>
+              <span className="badge bg-light border text-primary" style={{ borderColor: '#bae6fd' }}>08:00 - 18:00</span>
             </div>
             <p className="text-muted small mb-4">
               Identifies congestion hours to assist timetable planners and optimize campus facility load
@@ -209,7 +211,7 @@ const Analytics = () => {
           <div className="card-glass p-4 h-100 d-flex flex-column justify-content-between">
             <div>
               <h5 className="mb-0 fw-bold d-flex align-items-center gap-2 mb-3">
-                <i className="bi bi-pie-chart-fill text-info"></i>
+                <i className="bi bi-pie-chart-fill text-primary"></i>
                 Facility Breakdown
               </h5>
               <p className="text-muted small mb-3">
@@ -249,22 +251,22 @@ const Analytics = () => {
                 {topResources.map((item, idx) => (
                   <tr key={item._id}>
                     <td>
-                      <span className="badge rounded-circle p-2 bg-dark border border-secondary text-white font-monospace">
+                      <span className="badge rounded-circle p-2 bg-light border text-primary font-monospace" style={{ borderColor: '#bae6fd' }}>
                         #{idx + 1}
                       </span>
                     </td>
                     <td>
-                      <strong className="text-white">{item.name}</strong>
+                      <strong className="text-dark">{item.name}</strong>
                     </td>
                     <td>
-                      <span className="badge bg-secondary">{item.type}</span>
+                      <span className="badge bg-light text-primary border" style={{ borderColor: '#bae6fd' }}>{item.type}</span>
                     </td>
                     <td className="small text-muted">{item.building}</td>
                     <td>
-                      <span className="fw-bold text-info">{item.count}</span> <span className="small text-muted">sessions</span>
+                      <span className="fw-bold text-primary">{item.count}</span> <span className="small text-muted">sessions</span>
                     </td>
                     <td>
-                      <div className="progress" style={{ height: '8px', maxWidth: '140px', background: 'rgba(255,255,255,0.08)' }}>
+                      <div className="progress" style={{ height: '8px', maxWidth: '140px', background: '#e2e8f0' }}>
                         <div
                           className="progress-bar bg-primary"
                           role="progressbar"

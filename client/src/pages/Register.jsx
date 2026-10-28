@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
+  const [searchParams] = useSearchParams();
+  const queryRole = searchParams.get('role');
+
+  const validRoles = ['student', 'faculty', 'resource_manager'];
+  const defaultRole = validRoles.includes(queryRole) ? queryRole : 'student';
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    role: 'student',
-    department: 'Computer Science',
+    role: defaultRole,
+    department: defaultRole === 'faculty' ? 'Electronics & Communication' : defaultRole === 'resource_manager' ? 'Campus Infrastructure' : 'Computer Science',
     phone: '',
   });
+
+  useEffect(() => {
+    if (queryRole && validRoles.includes(queryRole)) {
+      setFormData((prev) => ({
+        ...prev,
+        role: queryRole,
+        department: queryRole === 'faculty' ? 'Electronics & Communication' : queryRole === 'resource_manager' ? 'Campus Infrastructure' : prev.department,
+      }));
+    }
+  }, [queryRole]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -47,8 +63,8 @@ const Register = () => {
                 style={{
                   width: '56px',
                   height: '56px',
-                  background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 100%)',
-                  boxShadow: '0 8px 20px rgba(16, 185, 129, 0.4)',
+                  background: 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)',
+                  boxShadow: '0 8px 20px rgba(14, 165, 233, 0.3)',
                 }}
               >
                 <i className="bi bi-person-plus-fill fs-3"></i>
@@ -74,7 +90,7 @@ const Register = () => {
                     type="text"
                     name="name"
                     className="form-control form-control-dark"
-                    placeholder="e.g. Aarav Sharma"
+                    placeholder="e.g. Honour David"
                     value={formData.name}
                     onChange={handleChange}
                     required
@@ -87,7 +103,7 @@ const Register = () => {
                     type="email"
                     name="email"
                     className="form-control form-control-dark"
-                    placeholder="e.g. aarav@campus.edu"
+                    placeholder="e.g. honour@campus.edu"
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -127,7 +143,7 @@ const Register = () => {
                     type="tel"
                     name="phone"
                     className="form-control form-control-dark"
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 878 802 4147"
                     value={formData.phone}
                     onChange={handleChange}
                   />
@@ -171,9 +187,19 @@ const Register = () => {
 
             <div className="text-center mt-3">
               <span className="text-muted small">Already have an account? </span>
-              <Link to="/login" className="small text-info text-decoration-none fw-semibold">
-                Sign in here
-              </Link>
+              <div className="d-flex justify-content-center gap-2 mt-1 small">
+                <Link to="/login" className="text-primary text-decoration-none fw-semibold">
+                  Student Sign In
+                </Link>
+                <span className="text-muted">•</span>
+                <Link to="/login/faculty" className="text-decoration-none fw-semibold" style={{ color: '#4f46e5' }}>
+                  Faculty Sign In
+                </Link>
+                <span className="text-muted">•</span>
+                <Link to="/login/resource-manager" className="text-decoration-none fw-semibold" style={{ color: '#059669' }}>
+                  Manager Sign In
+                </Link>
+              </div>
             </div>
           </div>
         </div>

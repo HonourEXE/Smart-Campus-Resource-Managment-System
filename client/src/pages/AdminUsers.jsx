@@ -71,13 +71,13 @@ const AdminUsers = () => {
         <div className="btn-group">
           <button
             onClick={() => setActiveTab('users')}
-            className={`btn ${activeTab === 'users' ? 'btn-primary-gradient' : 'btn-secondary-dark'}`}
+            className={`btn ${activeTab === 'users' ? 'btn-primary-gradient' : 'btn-secondary-light'}`}
           >
             <i className="bi bi-people-fill me-1"></i> User Management
           </button>
           <button
             onClick={() => setActiveTab('audit')}
-            className={`btn ${activeTab === 'audit' ? 'btn-primary-gradient' : 'btn-secondary-dark'}`}
+            className={`btn ${activeTab === 'audit' ? 'btn-primary-gradient' : 'btn-secondary-light'}`}
           >
             <i className="bi bi-shield-lock-fill me-1"></i> Audit Logs
           </button>
@@ -87,7 +87,7 @@ const AdminUsers = () => {
       {feedback.text && (
         <div className={`alert alert-${feedback.type} alert-dismissible fade show small py-2`} role="alert">
           {feedback.text}
-          <button type="button" className="btn-close btn-close-white" onClick={() => setFeedback({ type: '', text: '' })}></button>
+          <button type="button" className="btn-close" onClick={() => setFeedback({ type: '', text: '' })}></button>
         </div>
       )}
 
@@ -116,10 +116,10 @@ const AdminUsers = () => {
                 {users.map((u) => (
                   <tr key={u._id}>
                     <td>
-                      <div className="fw-bold text-white">{u.name}</div>
+                      <div className="fw-bold text-dark">{u.name}</div>
                       <div className="text-muted small">{u.email}</div>
                     </td>
-                    <td className="small text-light">{u.department}</td>
+                    <td className="small text-dark">{u.department}</td>
                     <td>
                       <span className={`badge ${u.role === 'admin' ? 'bg-danger' : u.role === 'resource_manager' ? 'bg-warning text-dark' : u.role === 'faculty' ? 'bg-info text-dark' : 'bg-primary'} text-uppercase`}>
                         {u.role}
@@ -193,17 +193,17 @@ const AdminUsers = () => {
                         </span>
                       </td>
                       <td>
-                        <span className="badge bg-dark border border-secondary text-light">
+                        <span className="badge bg-light border text-primary" style={{ borderColor: '#bae6fd' }}>
                           {log.entityType}
                         </span>
                       </td>
                       <td>
-                        <div className="small text-light">{log.actorId?.name || 'System / Guest'}</div>
+                        <div className="small text-dark fw-semibold">{log.actorId?.name || 'System / Guest'}</div>
                         <div className="text-muted" style={{ fontSize: '0.68rem' }}>
                           {log.actorId?.role} &bull; {log.actorId?.email}
                         </div>
                       </td>
-                      <td className="small text-light font-monospace" style={{ maxWidth: '300px' }}>
+                      <td className="small text-dark font-monospace" style={{ maxWidth: '300px' }}>
                         {typeof log.details === 'object' ? JSON.stringify(log.details) : log.details}
                       </td>
                     </tr>

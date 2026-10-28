@@ -8,6 +8,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages
 import Login from './pages/Login';
+import FacultyLogin from './pages/FacultyLogin';
+import ResourceManagerLogin from './pages/ResourceManagerLogin';
+import AdminLogin from './pages/AdminLogin';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Resources from './pages/Resources';
@@ -33,8 +36,13 @@ const AppContent = () => {
       {/* Main Routed Content */}
       <main className="flex-grow-1">
         <Routes>
-          {/* Public Routes */}
+          {/* Public Login Routes for Dedicated Campus Roles */}
           <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <Login />} />
+          <Route path="/login/student" element={user ? <Navigate to="/dashboard" replace /> : <Login />} />
+          <Route path="/login/faculty" element={user ? <Navigate to="/dashboard" replace /> : <FacultyLogin />} />
+          <Route path="/login/resource-manager" element={user ? <Navigate to="/dashboard" replace /> : <ResourceManagerLogin />} />
+          <Route path="/login/manager" element={user ? <Navigate to="/dashboard" replace /> : <ResourceManagerLogin />} />
+          <Route path="/login/admin" element={user ? <Navigate to="/dashboard" replace /> : <AdminLogin />} />
           <Route path="/register" element={user ? <Navigate to="/dashboard" replace /> : <Register />} />
 
           {/* Protected Routes for All Authenticated Campus Roles */}

@@ -112,7 +112,7 @@ const Bookings = () => {
             <button
               key={status}
               onClick={() => setStatusFilter(status)}
-              className={`btn btn-sm ${statusFilter === status ? 'btn-primary-gradient' : 'btn-secondary-dark'}`}
+              className={`btn btn-sm ${statusFilter === status ? 'btn-primary-gradient' : 'btn-secondary-light'}`}
             >
               {status}
               {status === 'Pending' && pendingCount > 0 && (
@@ -126,7 +126,7 @@ const Bookings = () => {
       {feedbackMsg.text && (
         <div className={`alert alert-${feedbackMsg.type} alert-dismissible fade show small py-2`} role="alert">
           {feedbackMsg.text}
-          <button type="button" className="btn-close btn-close-white" onClick={() => setFeedbackMsg({ type: '', text: '' })}></button>
+          <button type="button" className="btn-close" onClick={() => setFeedbackMsg({ type: '', text: '' })}></button>
         </div>
       )}
 
@@ -160,13 +160,13 @@ const Bookings = () => {
                 {bookings.map((b) => (
                   <tr key={b._id}>
                     <td>
-                      <div className="fw-bold text-white">{b.resourceId?.name}</div>
+                      <div className="fw-bold text-dark">{b.resourceId?.name}</div>
                       <div className="text-muted" style={{ fontSize: '0.75rem' }}>
                         {b.resourceId?.type} &bull; {b.resourceId?.location?.building}
                       </div>
                     </td>
                     <td>
-                      <div className="text-light small fw-semibold">
+                      <div className="text-dark small fw-semibold">
                         {new Date(b.startTime).toLocaleDateString([], {
                           weekday: 'short',
                           month: 'short',
@@ -174,21 +174,21 @@ const Bookings = () => {
                           year: 'numeric',
                         })}
                       </div>
-                      <div className="text-info" style={{ fontSize: '0.75rem' }}>
+                      <div className="text-primary fw-medium" style={{ fontSize: '0.75rem' }}>
                         {new Date(b.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {new Date(b.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
                     </td>
                     <td>
-                      <div className="small text-light fw-medium">{b.purpose}</div>
+                      <div className="small text-dark fw-medium">{b.purpose}</div>
                       <div className="text-muted" style={{ fontSize: '0.72rem' }}>
                         Attendees: {b.attendeesCount}
                       </div>
                     </td>
                     {isStaffOrAdmin && (
                       <td>
-                        <div className="small text-light fw-semibold">{b.userId?.name}</div>
+                        <div className="small text-dark fw-semibold">{b.userId?.name}</div>
                         <div className="text-muted" style={{ fontSize: '0.72rem' }}>
-                          <span className="badge bg-dark border border-secondary text-capitalize">{b.userId?.role}</span> &bull; {b.userId?.department}
+                          <span className="badge bg-light text-primary border border-info text-capitalize">{b.userId?.role}</span> &bull; {b.userId?.department}
                         </div>
                       </td>
                     )}
@@ -200,7 +200,7 @@ const Bookings = () => {
                     <td className="small text-muted" style={{ maxWidth: '180px' }}>
                       {b.decisionReason ? (
                         <div>
-                          <div className="text-light" style={{ fontSize: '0.75rem' }}>"{b.decisionReason}"</div>
+                          <div className="text-dark" style={{ fontSize: '0.75rem' }}>"{b.decisionReason}"</div>
                           {b.decisionBy && (
                             <div className="text-secondary" style={{ fontSize: '0.68rem' }}>
                               By {b.decisionBy.name}
@@ -261,24 +261,24 @@ const Bookings = () => {
         <div
           className="modal fade show d-block"
           tabIndex="-1"
-          style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)' }}
+          style={{ backgroundColor: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(6px)' }}
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content card-glass">
-              <div className="modal-header border-bottom border-secondary">
-                <h5 className="modal-title fw-bold text-white">
+              <div className="modal-header border-bottom" style={{ borderColor: '#e0f2fe' }}>
+                <h5 className="modal-title fw-bold text-dark">
                   {decisionType === 'Approved' ? 'Confirm Booking Approval' : 'Reject Booking Request'}
                 </h5>
                 <button
                   type="button"
-                  className="btn-close btn-close-white"
+                  className="btn-close"
                   onClick={() => setActiveDecisionBooking(null)}
                 ></button>
               </div>
 
               <form onSubmit={handleDecisionSubmit}>
                 <div className="modal-body p-4">
-                  <div className="p-3 rounded bg-dark border border-secondary mb-3 small">
+                  <div className="p-3 rounded bg-light border mb-3 small" style={{ borderColor: '#e2e8f0' }}>
                     <div>Facility: <strong>{activeDecisionBooking.resourceId?.name}</strong></div>
                     <div>Requested By: <strong>{activeDecisionBooking.userId?.name}</strong> ({activeDecisionBooking.userId?.email})</div>
                     <div>Purpose: {activeDecisionBooking.purpose}</div>
@@ -299,10 +299,10 @@ const Bookings = () => {
                   </div>
                 </div>
 
-                <div className="modal-footer border-top border-secondary">
+                <div className="modal-footer border-top" style={{ borderColor: '#e0f2fe' }}>
                   <button
                     type="button"
-                    className="btn btn-secondary-dark"
+                    className="btn btn-secondary-light"
                     onClick={() => setActiveDecisionBooking(null)}
                   >
                     Cancel

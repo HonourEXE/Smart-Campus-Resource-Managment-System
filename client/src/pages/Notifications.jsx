@@ -77,7 +77,7 @@ const Notifications = () => {
         </div>
 
         {unreadCount > 0 && (
-          <button onClick={handleMarkAllRead} className="btn btn-secondary-dark btn-sm">
+          <button onClick={handleMarkAllRead} className="btn btn-secondary-light btn-sm">
             <i className="bi bi-check2-all me-1"></i> Mark All as Read
           </button>
         )}
@@ -102,8 +102,9 @@ const Notifications = () => {
                 key={notif._id}
                 className="p-3 rounded d-flex justify-content-between align-items-center gap-3"
                 style={{
-                  background: notif.isRead ? 'rgba(255, 255, 255, 0.02)' : 'rgba(99, 102, 241, 0.08)',
-                  border: notif.isRead ? '1px solid var(--surface-border)' : '1px solid rgba(99, 102, 241, 0.3)',
+                  background: notif.isRead ? '#ffffff' : '#f0f9ff',
+                  border: notif.isRead ? '1px solid #e2e8f0' : '1px solid #7dd3fc',
+                  boxShadow: notif.isRead ? 'none' : '0 2px 8px rgba(14, 165, 233, 0.1)',
                 }}
               >
                 <div className="d-flex align-items-start gap-3">
@@ -111,7 +112,7 @@ const Notifications = () => {
                     <i className={`bi ${getNotificationIcon(notif.type)}`}></i>
                   </div>
                   <div>
-                    <div className={`small ${notif.isRead ? 'text-light' : 'text-white fw-semibold'}`}>
+                    <div className={`small ${notif.isRead ? 'text-muted' : 'text-dark fw-bold'}`}>
                       {notif.message}
                     </div>
                     <div className="text-muted" style={{ fontSize: '0.72rem' }}>

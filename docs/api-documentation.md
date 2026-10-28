@@ -17,12 +17,12 @@ Authorization: Bearer <JWT_TOKEN>
 - **Request Body:**
 ```json
 {
-  "name": "Aarav Sharma",
+  "name": "Honour David",
   "email": "student@campus.edu",
   "password": "password123",
   "role": "student",
   "department": "Computer Science & Engineering",
-  "phone": "+91 98765 43210"
+  "phone": "+91 878 802 4147"
 }
 ```
 - **Responses:**

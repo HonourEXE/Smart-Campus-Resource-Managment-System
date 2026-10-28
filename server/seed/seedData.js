@@ -28,12 +28,12 @@ const seedAll = async () => {
 
     const users = await User.create([
       {
-        name: 'Aarav Sharma',
+        name: 'Honour David',
         email: 'student@campus.edu',
         passwordHash,
         role: 'student',
         department: 'Computer Science & Engineering',
-        phone: '+91 98765 43210',
+        phone: '+91 878 802 4147',
         isActive: true,
       },
       {

@@ -38,7 +38,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <nav className="navbar navbar-expand-lg navbar-light navbar-custom">
       <div className="container-fluid px-lg-4">
         <Link to="/dashboard" className="navbar-brand d-flex align-items-center gap-2">
           <div
@@ -46,15 +46,15 @@ const Navbar = () => {
             style={{
               width: '40px',
               height: '40px',
-              background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
-              boxShadow: '0 4px 12px rgba(59, 130, 246, 0.4)',
+              background: 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)',
+              boxShadow: '0 4px 12px rgba(14, 165, 233, 0.3)',
             }}
           >
             <i className="bi bi-buildings-fill fs-5"></i>
           </div>
           <div>
             <span className="navbar-brand-gradient">SmartCampus</span>
-            <span className="badge bg-secondary ms-2 d-none d-sm-inline" style={{ fontSize: '0.65rem' }}>
+            <span className="badge bg-light text-primary border ms-2 d-none d-sm-inline" style={{ fontSize: '0.65rem', borderColor: '#bae6fd' }}>
               SCRMS
             </span>
           </div>
@@ -138,11 +138,11 @@ const Navbar = () => {
                 {/* Notification Bell */}
                 <Link
                   to="/notifications"
-                  className="btn btn-secondary-dark position-relative p-2 rounded-circle d-flex align-items-center justify-content-center"
+                  className="btn btn-secondary-light position-relative p-2 rounded-circle d-flex align-items-center justify-content-center"
                   style={{ width: '40px', height: '40px' }}
                   title="Notifications"
                 >
-                  <i className="bi bi-bell-fill fs-6 text-light"></i>
+                  <i className="bi bi-bell-fill fs-6 text-primary"></i>
                   {unreadCount > 0 && (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: '0.65rem' }}>
                       {unreadCount}
@@ -151,9 +151,9 @@ const Navbar = () => {
                 </Link>
 
                 {/* User Info & Role */}
-                <div className="d-flex align-items-center gap-2 border-start border-secondary ps-3">
+                <div className="d-flex align-items-center gap-2 border-start ps-3" style={{ borderColor: 'var(--surface-border-sky)' }}>
                   <div className="text-end d-none d-sm-block">
-                    <div className="fw-bold text-white small">{user.name}</div>
+                    <div className="fw-bold text-dark small">{user.name}</div>
                     <div className="text-muted" style={{ fontSize: '0.72rem' }}>
                       {user.department}
                     </div>
@@ -172,10 +172,68 @@ const Navbar = () => {
               </div>
             </>
           ) : (
-            <div className="d-flex ms-auto gap-2">
-              <Link to="/login" className="btn btn-secondary-dark">
-                Sign In
-              </Link>
+            <div className="d-flex align-items-center ms-auto gap-2">
+              <div className="dropdown">
+                <button
+                  className="btn btn-secondary-light dropdown-toggle d-flex align-items-center gap-2"
+                  type="button"
+                  id="portalSelectDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="bi bi-shield-lock-fill text-primary"></i>
+                  <span>Portal Sign In</span>
+                </button>
+                <ul
+                  className="dropdown-menu dropdown-menu-end shadow-sm border py-2"
+                  aria-labelledby="portalSelectDropdown"
+                  style={{ minWidth: '240px', borderRadius: '12px', borderColor: 'var(--surface-border-sky)' }}
+                >
+                  <li>
+                    <h6 className="dropdown-header text-uppercase text-muted" style={{ fontSize: '0.68rem', letterSpacing: '0.05em' }}>
+                      Select Campus Portal
+                    </h6>
+                  </li>
+                  <li>
+                    <Link to="/login" className="dropdown-item d-flex align-items-center gap-2 py-2">
+                      <i className="bi bi-mortarboard-fill text-primary fs-5"></i>
+                      <div>
+                        <div className="fw-semibold text-dark small">Student Portal</div>
+                        <div className="text-muted" style={{ fontSize: '0.7rem' }}>Classrooms, labs & sports facilities</div>
+                      </div>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/login/faculty" className="dropdown-item d-flex align-items-center gap-2 py-2">
+                      <i className="bi bi-award-fill text-info fs-5"></i>
+                      <div>
+                        <div className="fw-semibold text-dark small">Faculty Portal</div>
+                        <div className="text-muted" style={{ fontSize: '0.7rem' }}>Seminar halls & research labs</div>
+                      </div>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/login/resource-manager" className="dropdown-item d-flex align-items-center gap-2 py-2">
+                      <i className="bi bi-building-gear text-warning fs-5"></i>
+                      <div>
+                        <div className="fw-semibold text-dark small">Resource Manager</div>
+                        <div className="text-muted" style={{ fontSize: '0.7rem' }}>Facility operations & approvals</div>
+                      </div>
+                    </Link>
+                  </li>
+                  <li><hr className="dropdown-divider my-1" /></li>
+                  <li>
+                    <Link to="/login/admin" className="dropdown-item d-flex align-items-center gap-2 py-2">
+                      <i className="bi bi-shield-lock text-danger fs-5"></i>
+                      <div>
+                        <div className="fw-semibold text-dark small">Administrator</div>
+                        <div className="text-muted" style={{ fontSize: '0.7rem' }}>Campus governance & audit logs</div>
+                      </div>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
               <Link to="/register" className="btn btn-primary-gradient">
                 Register
               </Link>
